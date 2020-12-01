@@ -20,8 +20,18 @@ export default createMuiTheme({
     }
   },
   typography: {
-    h3: {
-      fontWeight: 250
+    tab: {
+      fontFamily: 'Ubuntu Condensed',
+      //can set textTransform to none to keep all tabs default case, remove for all uppercase
+      textTransform: 'none',
+       fontWeight: '700',
+       fontSize: '1rem',
+    },
+    consultation: {
+      fontFamily: 'Ubuntu Condensed',
+      fontSize: '1rem',
+      textTransform: 'none',
+      // color: ""
     }
   }
 })
