@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import {AppBar, Toolbar, useScrollTrigger, Typography, Tabs, Tab, Button, Menu, MenuItem, useMediaQuery} from '@material-ui/core'
+import {AppBar, Toolbar, useScrollTrigger, Typography, SwipeableDrawer, Tabs, Tab, Button, Menu, MenuItem, useMediaQuery, IconButton} from '@material-ui/core'
 import { makeStyles, useTheme } from '@material-ui/styles'
 import { Link } from 'react-router-dom'
+import MenuIcon from '@material-ui/icons/Menu'
 
 import logo from '../../assets/logo.svg'
 
@@ -75,6 +76,16 @@ const useStyles = makeStyles(theme => ({
       opacity: 1,
       // backgroundColor: 'white'
     }
+  },
+  drawerIcon: {
+    height: '50px',
+    width: '50px'
+  },
+  drawerIconContainer: {
+    marginLeft: 'auto',
+    '&:hover': {
+      backgroundColor: 'transparent',
+    }
   }
 
 }))
@@ -83,30 +94,33 @@ export default function Header(props){
 
   const classes = useStyles()
   const theme = useTheme()
+  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
   const matches = useMediaQuery(theme.breakpoints.down('md'))
+
+  const [drawerOpen, setDrawerOpen] = useState(false)
   const [value, setValue] = useState(0)
   const [anchorEl, setAnchorEl] = useState(null)
-  const [open, setOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const [selectedIndex, setSelectedIndex] = useState(0)
 
-  const handleChange = (e, value) => {
-    setValue(value)
+  const handleChange = (e, newValue) => {
+    setValue(newValue)
   }
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
-    setOpen(true)
+    setMenuOpen(true)
   }
 
   const handleMenuItemClick = (e, i) => {
     setAnchorEl(null)
-    setOpen(false)
+    setMenuOpen(false)
     setSelectedIndex(i)
   }
 
   const handleClose = (e) => {
     setAnchorEl(null)
-    setOpen(false)
+    setMenuOpen(false)
   }
 
   const menuOptions = [
@@ -175,7 +189,7 @@ export default function Header(props){
       <Menu 
         id='simple-menu' 
         anchorEl={anchorEl} 
-        open={open} 
+        open={menuOpen} 
         onClose={handleClose}
         classes={{paper: classes.menu}}
         MenuListProps={{onMouseLeave: handleClose}}
@@ -199,6 +213,18 @@ export default function Header(props){
     </React.Fragment>
   )
 
+  const drawer = (
+    <React.Fragment>
+      <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open={drawerOpen} onClose={() => setDrawerOpen(false)} onOpen={() => setDrawerOpen(true)}>
+       inside drawer here
+      </SwipeableDrawer>
+       
+      <IconButton className={classes.drawerIconContainer} onClick={()=> setDrawerOpen(!drawerOpen)}>
+        <MenuIcon className={classes.drawerIcon}>
+        </MenuIcon>
+      </IconButton>
+    </React.Fragment>
+  )
 
   return (
     <React.Fragment>
@@ -214,7 +240,7 @@ export default function Header(props){
           >
             <img className={classes.logo} src={logo} alt="rainier elixirs logo" />
           </Button>
-            {matches ? null : tabs}
+            {matches ? drawer : tabs}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
