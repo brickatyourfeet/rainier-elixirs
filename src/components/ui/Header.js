@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {AppBar, Toolbar, useScrollTrigger, Typography, SwipeableDrawer, Tabs, Tab, Button, Menu, MenuItem, useMediaQuery, IconButton} from '@material-ui/core'
+import {AppBar, Toolbar, useScrollTrigger, Typography, SwipeableDrawer, Tabs, Tab, Button, Menu, MenuItem, useMediaQuery, IconButton, List, ListItem, ListItemText} from '@material-ui/core'
 import { makeStyles, useTheme } from '@material-ui/styles'
 import { Link } from 'react-router-dom'
 import MenuIcon from '@material-ui/icons/Menu'
@@ -216,7 +216,26 @@ export default function Header(props){
   const drawer = (
     <React.Fragment>
       <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open={drawerOpen} onClose={() => setDrawerOpen(false)} onOpen={() => setDrawerOpen(true)}>
-       inside drawer here
+       <List disablePadding>
+        <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/'>
+          <ListItemText disableTypography>Home</ListItemText>
+        </ListItem>
+        <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/services'>
+          <ListItemText disableTypography>Services</ListItemText>
+        </ListItem>
+        <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/herbz'>
+          <ListItemText disableTypography>Herbz</ListItemText>
+        </ListItem>
+        <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/about'>
+          <ListItemText disableTypography>About</ListItemText>
+        </ListItem>
+        <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/contact'>
+          <ListItemText disableTypography>Contact</ListItemText>
+        </ListItem>
+        <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/consultation'>
+          <ListItemText disableTypography>Schedule Consultation</ListItemText>
+        </ListItem>
+       </List>
       </SwipeableDrawer>
        
       <IconButton className={classes.drawerIconContainer} onClick={()=> setDrawerOpen(!drawerOpen)}>
