@@ -77,6 +77,17 @@ const useStyles = makeStyles(theme => ({
       // backgroundColor: 'white'
     }
   },
+  drawer: {
+    backgroundColor: theme.palette.common.teal,
+
+  },
+  drawerItem: {
+    ...theme.typography.tab,
+    color: 'white'
+  },
+  drawerItemConsultation: {
+    backgroundColor: theme.palette.common.red
+  },
   drawerIcon: {
     height: '50px',
     width: '50px'
@@ -215,25 +226,32 @@ export default function Header(props){
 
   const drawer = (
     <React.Fragment>
-      <SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} open={drawerOpen} onClose={() => setDrawerOpen(false)} onOpen={() => setDrawerOpen(true)}>
+      <SwipeableDrawer 
+        disableBackdropTransition={!iOS} 
+        disableDiscovery={iOS} 
+        open={drawerOpen} 
+        onClose={() => setDrawerOpen(false)} 
+        onOpen={() => setDrawerOpen(true)}
+        classes={{paper: classes.drawer}}
+      >
        <List disablePadding>
         <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/'>
-          <ListItemText disableTypography>Home</ListItemText>
+          <ListItemText className={classes.drawerItem} disableTypography>Home</ListItemText>
         </ListItem>
         <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/services'>
-          <ListItemText disableTypography>Services</ListItemText>
+          <ListItemText className={classes.drawerItem} disableTypography>Services</ListItemText>
         </ListItem>
         <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/herbz'>
-          <ListItemText disableTypography>Herbz</ListItemText>
+          <ListItemText className={classes.drawerItem} disableTypography>Herbz</ListItemText>
         </ListItem>
         <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/about'>
-          <ListItemText disableTypography>About</ListItemText>
+          <ListItemText className={classes.drawerItem} disableTypography>About</ListItemText>
         </ListItem>
         <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/contact'>
-          <ListItemText disableTypography>Contact</ListItemText>
+          <ListItemText className={classes.drawerItem} disableTypography>Contact</ListItemText>
         </ListItem>
-        <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/consultation'>
-          <ListItemText disableTypography>Schedule Consultation</ListItemText>
+        <ListItem className={classes.drawerItemConsultation} onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/consultation'>
+          <ListItemText className={classes.drawerItem} disableTypography>Schedule Consultation</ListItemText>
         </ListItem>
        </List>
       </SwipeableDrawer>
