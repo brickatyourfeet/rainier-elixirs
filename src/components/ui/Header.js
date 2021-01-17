@@ -87,7 +87,9 @@ const useStyles = makeStyles(theme => ({
     opacity: 0.7
   },
   drawerItemSelected: {
-    opacity: 1
+    '& .MuiListItemText-root': {
+      opacity: 1
+    }
   },
   drawerItemConsultation: {
     backgroundColor: theme.palette.common.red
@@ -101,6 +103,10 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: 'transparent',
     }
+  },
+  appBar: {
+    zIndex: theme.zIndex.modal + 1,
+
   }
 
 }))
@@ -207,10 +213,11 @@ export default function Header(props){
         MenuListProps={{onMouseLeave: handleClose}}
         elevation={0}
         keepMounted
+        style={{zIndex: 1302}}
       >
       {menuOptions.map((option, index) => (
         <MenuItem 
-          key={option}
+          key={`${option}${index}`}
           component={Link} 
           to={option.link} 
           classes={{root: classes.menuItem}} 
@@ -236,6 +243,7 @@ export default function Header(props){
         onOpen={() => setDrawerOpen(true)}
         classes={{paper: classes.drawer}}
       >
+       <div className={classes.headerMargin} />
        <List disablePadding>
         {routes.map(route => (
           <ListItem 
@@ -244,20 +252,20 @@ export default function Header(props){
             button 
             component={Link} 
             to={route.link} 
-            selected 
             onClick={() => {setDrawerOpen(false); setValue(route.activeIndex)}}
             selected={value === route.activeIndex}
+            classes={{selected: classes.drawerItemSelected}}
             >
             <ListItemText 
-              className={value === route.activeIndex ? [classes.drawerItem, classes.drawerItemSelected] : classes.drawerItem} 
+              className={classes.drawerItem} 
               disableTypography
             >
               {route.name}
             </ListItemText>
           </ListItem>
         ))}
-        <ListItem selected={value===5} className={classes.drawerItemConsultation} onClick={()=> {setDrawerOpen(false); setValue(5)}} divider button component={Link} to='/consultation'>
-          <ListItemText className={value === 5 ? [classes.drawerItem, classes.drawerItemSelected]: classes.drawerItem} disableTypography>Schedule Consultation</ListItemText>
+        <ListItem selected={value===5} classes={{root: classes.drawerItemConsultation, selected: classes.drawerItemSelected}} onClick={()=> {setDrawerOpen(false); setValue(5)}} divider button component={Link} to='/consultation'>
+          <ListItemText className={classes.drawerItem} disableTypography>Schedule Consultation</ListItemText>
         </ListItem>
        </List>
       </SwipeableDrawer>
@@ -272,7 +280,7 @@ export default function Header(props){
   return (
     <React.Fragment>
       <ElevationScroll>
-        <AppBar position="fixed" color="primary">
+        <AppBar position="fixed" color="primary" className={classes.appBar}>
           <Toolbar>
           <Button 
             component={Link} 
