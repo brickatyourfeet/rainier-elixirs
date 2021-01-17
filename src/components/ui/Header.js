@@ -83,7 +83,11 @@ const useStyles = makeStyles(theme => ({
   },
   drawerItem: {
     ...theme.typography.tab,
-    color: 'white'
+    color: 'white',
+    opacity: 0.7
+  },
+  drawerItemSelected: {
+    opacity: 1
   },
   drawerItemConsultation: {
     backgroundColor: theme.palette.common.red
@@ -135,41 +139,38 @@ export default function Header(props){
   }
 
   const menuOptions = [
-    {name: 'Services', link: '/services'},
-    {name: 'service1', link: '/service1'},
-    {name: 'service2', link: '/service2'},
-    {name: 'service3', link: '/service3'},
+    {name: 'Services', link: '/services', activeIndex: 1, selectedIndex: 0},
+    {name: 'service1', link: '/service1', activeIndex: 1, selectedIndex: 1},
+    {name: 'service2', link: '/service2', activeIndex: 1, selectedIndex: 2},
+    {name: 'service3', link: '/service3', activeIndex: 1, selectedIndex: 3},
   ]
 
+  const routes = [
+    {name: "Home", link: '/', activeIndex: 0}, 
+    {name: "Services", link: '/services', activeIndex: 1},
+    {name: "Herbz", link: '/herbz', activeIndex: 2},
+    {name: "About", link: '/about', activeIndex: 3},
+    {name: "Contact", link: '/contact', activeIndex: 4}
+  ]
+
+  
+
   useEffect(() => {
-    if(window.location.pathname === '/' && value !== 0){
-      setValue(0)
-    } else if(window.location.pathname === '/services' && value !== 1){
-      setValue(1)
-    } else if(window.location.pathname === '/herbz' && value !== 2){
-      setValue(2)
-    } else if(window.location.pathname === '/about' && value !== 3){
-      setValue(3)
-    } else if(window.location.pathname === '/contact' && value !== 4){
-      setValue(4)
-    } else if(window.location.pathname === '/consultation' && value !== 5){
-      setValue(5)
-    } 
-
-    switch(window.location.pathname) {
-      case '/': if(value !== 0) {setValue(0)} break;
-      case '/services': if(value !== 1) {setValue(1); setSelectedIndex(0);} break;
-      case '/service1': if(value !== 1) {setValue(1); setSelectedIndex(1);} break;
-      case '/service2': if(value !== 1) {setValue(1); setSelectedIndex(2);} break;
-      case '/service3': if(value !== 1) {setValue(1); setSelectedIndex(3);} break;
-      case '/herbz': if(value !== 2) {setValue(2);} break;
-      case '/about': if(value !== 3) {setValue(3);} break;
-      case '/contact': if(value !== 4) {setValue(4);} break;
-      case '/consultation': if(value !== 5) {setValue(5);} break;
-      default: break;
-    }
-
-  }, [value])
+    [...menuOptions, ...routes].forEach(route => {
+      switch(window.location.pathname){
+        case `${route.link}`:
+          if(value !== route.activeIndex){
+            setValue(route.activeIndex)
+            if(route.selectedIndex && route.selectedIndex !== selectedIndex){
+              setSelectedIndex(route.selectedIndex)
+            }
+          }
+          break;
+        default:
+          break;
+      }
+    })
+  }, [value, menuOptions, selectedIndex, routes])
 
 
   const tabs = (
@@ -235,23 +236,23 @@ export default function Header(props){
         classes={{paper: classes.drawer}}
       >
        <List disablePadding>
-        <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/'>
-          <ListItemText className={classes.drawerItem} disableTypography>Home</ListItemText>
+        <ListItem selected={value===0} onClick={()=> {setDrawerOpen(false); setValue(0)}} divider button component={Link} to='/'>
+          <ListItemText className={value === 0 ? [classes.drawerItem, classes.drawerItemSelected]: classes.drawerItem} disableTypography>Home</ListItemText>
         </ListItem>
-        <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/services'>
-          <ListItemText className={classes.drawerItem} disableTypography>Services</ListItemText>
+        <ListItem selected={value===1} onClick={()=> {setDrawerOpen(false); setValue(1)}} divider button component={Link} to='/services'>
+          <ListItemText className={value === 1 ? [classes.drawerItem, classes.drawerItemSelected]: classes.drawerItem} disableTypography>Services</ListItemText>
         </ListItem>
-        <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/herbz'>
-          <ListItemText className={classes.drawerItem} disableTypography>Herbz</ListItemText>
+        <ListItem selected={value===2} onClick={()=> {setDrawerOpen(false); setValue(2)}} divider button component={Link} to='/herbz'>
+          <ListItemText className={value === 2 ? [classes.drawerItem, classes.drawerItemSelected]: classes.drawerItem} disableTypography>Herbz</ListItemText>
         </ListItem>
-        <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/about'>
-          <ListItemText className={classes.drawerItem} disableTypography>About</ListItemText>
+        <ListItem selected={value===3} onClick={()=> {setDrawerOpen(false); setValue(3)}} divider button component={Link} to='/about'>
+          <ListItemText className={value === 3 ? [classes.drawerItem, classes.drawerItemSelected]: classes.drawerItem} disableTypography>About</ListItemText>
         </ListItem>
-        <ListItem onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/contact'>
-          <ListItemText className={classes.drawerItem} disableTypography>Contact</ListItemText>
+        <ListItem selected={value===4} onClick={()=> {setDrawerOpen(false); setValue(4)}} divider button component={Link} to='/contact'>
+          <ListItemText className={value === 4 ? [classes.drawerItem, classes.drawerItemSelected]: classes.drawerItem} disableTypography>Contact</ListItemText>
         </ListItem>
-        <ListItem className={classes.drawerItemConsultation} onClick={()=> setDrawerOpen(false)} divider button component={Link} to='/consultation'>
-          <ListItemText className={classes.drawerItem} disableTypography>Schedule Consultation</ListItemText>
+        <ListItem selected={value===5} className={classes.drawerItemConsultation} onClick={()=> {setDrawerOpen(false); setValue(5)}} divider button component={Link} to='/consultation'>
+          <ListItemText className={value === 5 ? [classes.drawerItem, classes.drawerItemSelected]: classes.drawerItem} disableTypography>Schedule Consultation</ListItemText>
         </ListItem>
        </List>
       </SwipeableDrawer>
