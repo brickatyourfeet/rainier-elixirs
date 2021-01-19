@@ -119,13 +119,13 @@ export default function Header(props){
   const matches = useMediaQuery(theme.breakpoints.down('md'))
 
   const [drawerOpen, setDrawerOpen] = useState(false)
-  const [value, setValue] = useState(0)
+
   const [anchorEl, setAnchorEl] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [selectedIndex, setSelectedIndex] = useState(0)
+
 
   const handleChange = (e, newValue) => {
-    setValue(newValue)
+    props.setValue(newValue)
   }
 
   const handleClick = (e) => {
@@ -136,7 +136,7 @@ export default function Header(props){
   const handleMenuItemClick = (e, i) => {
     setAnchorEl(null)
     setMenuOpen(false)
-    setSelectedIndex(i)
+    props.setSelectedIndex(i)
   }
 
   const handleClose = (e) => {
@@ -165,10 +165,10 @@ export default function Header(props){
     [...menuOptions, ...routes].forEach(route => {
       switch(window.location.pathname){
         case `${route.link}`:
-          if(value !== route.activeIndex){
-            setValue(route.activeIndex)
-            if(route.selectedIndex && route.selectedIndex !== selectedIndex){
-              setSelectedIndex(route.selectedIndex)
+          if(props.value !== route.activeIndex){
+            props.setValue(route.activeIndex)
+            if(route.selectedIndex && route.selectedIndex !== props.selectedIndex){
+              props.setSelectedIndex(route.selectedIndex)
             }
           }
           break;
@@ -176,13 +176,13 @@ export default function Header(props){
           break;
       }
     })
-  }, [value, menuOptions, selectedIndex, routes])
+  }, [props.value, menuOptions, props.selectedIndex, routes, props])
 
 
   const tabs = (
     <React.Fragment>
       <Tabs 
-      value={value} 
+      value={props.value} 
       onChange={handleChange} 
       className={classes.tabContainer}
       //can set indicator color to primary to get rid of underline
@@ -222,9 +222,9 @@ export default function Header(props){
           to={option.link} 
           classes={{root: classes.menuItem}} 
           onClick={(event) => {
-            handleMenuItemClick(event, index); setValue(1); handleClose()
+            handleMenuItemClick(event, index); props.setValue(1); handleClose()
           }}
-          selected={index === selectedIndex && value === 1}
+          selected={index === props.selectedIndex && props.value === 1}
         >
           {option.name}
         </MenuItem>
@@ -252,8 +252,8 @@ export default function Header(props){
             button 
             component={Link} 
             to={route.link} 
-            onClick={() => {setDrawerOpen(false); setValue(route.activeIndex)}}
-            selected={value === route.activeIndex}
+            onClick={() => {setDrawerOpen(false); props.setValue(route.activeIndex)}}
+            selected={props.value === route.activeIndex}
             classes={{selected: classes.drawerItemSelected}}
             >
             <ListItemText 
@@ -264,7 +264,7 @@ export default function Header(props){
             </ListItemText>
           </ListItem>
         ))}
-        <ListItem selected={value===5} classes={{root: classes.drawerItemConsultation, selected: classes.drawerItemSelected}} onClick={()=> {setDrawerOpen(false); setValue(5)}} divider button component={Link} to='/consultation'>
+        <ListItem selected={props.value===5} classes={{root: classes.drawerItemConsultation, selected: classes.drawerItemSelected}} onClick={()=> {setDrawerOpen(false); props.setValue(5)}} divider button component={Link} to='/consultation'>
           <ListItemText className={classes.drawerItem} disableTypography>Schedule Consultation</ListItemText>
         </ListItem>
        </List>
@@ -286,7 +286,7 @@ export default function Header(props){
             component={Link} 
             to='/' 
             className={classes.logoContainer} 
-            onClick={()=> setValue(0)}
+            onClick={()=> props.setValue(0)}
             // disableRipple  //can disable ripple on click 
           >
             <img className={classes.logo} src={logo} alt="rainier elixirs logo" />
