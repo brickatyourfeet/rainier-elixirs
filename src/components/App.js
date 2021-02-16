@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Header from './ui/Header'
 import Footer from './ui/Footer'
+import Landing from './Landing'
 import { ThemeProvider } from '@material-ui/styles'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import theme from './ui/Theme'
@@ -14,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Header value={value} setValue={setValue} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
         <Switch>
-          <Route exact path='/' component={()=> <div style={{height: '1500px'}}>home page</div>}/>
+          <Route exact path='/' component={Landing}/>
           <Route exact path='/services' component={()=> <div>services</div>}/>
           <Route exact path='/service1' component={()=> <div>placeholder component</div>}/>
           <Route exact path='/service2' component={()=> <div>placeholder component</div>}/>
