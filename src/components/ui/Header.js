@@ -63,6 +63,11 @@ const useStyles = makeStyles(theme => ({
     marginLeft: '50px',
     marginRight: '25px',
     fontHeight: '45px',
+    // height: '45px',
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.light
+    },
+    // textTransform: 'none'
   },
   menu: {
     backgroundColor: theme.palette.common.red,
@@ -172,6 +177,10 @@ export default function Header(props){
             }
           }
           break;
+        case '/consultation': {
+          props.setValue(5);
+          break;
+        }
         default:
           break;
       }
@@ -201,7 +210,8 @@ export default function Header(props){
           />
         ))}
       </Tabs>
-      <Button variant='contained' color='secondary' className={classes.button}>
+      
+      <Button component={Link} to='/consultation' onClick={() => props.setValue(5)} variant='contained' color='secondary' className={classes.button}>
       Schedule a Consultation?
       </Button>
       <Menu 

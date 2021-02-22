@@ -219,7 +219,7 @@ export default function Footer(props) {
       </Hidden>
 
       <img
-        alt="black decorative slash"
+        alt="black footer slash"
         src={footerAdornment}
         className={classes.adornment}
       />

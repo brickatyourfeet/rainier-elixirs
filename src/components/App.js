@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
         <Header value={value} setValue={setValue} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
         <Switch>
-          <Route exact path='/' component={Landing}/>
+          <Route exact path='/' render={(props) => <Landing {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} />}/>
           <Route exact path='/services' component={()=> <div>services</div>}/>
           <Route exact path='/service1' component={()=> <div>placeholder component</div>}/>
           <Route exact path='/service2' component={()=> <div>placeholder component</div>}/>
@@ -23,12 +23,10 @@ function App() {
           <Route exact path='/herbz' component={()=> <div>herbz</div>}/>
           <Route exact path='/about' component={()=> <div>about</div>}/>
           <Route exact path='/contact' component={()=> <div>contact</div>}/>
-          <Route exact path='/consultation' component={()=> <div>estimate</div>}/>
+          <Route exact path='/consultation' component={()=> <div>consult</div>}/>
         </Switch>
-        <Footer value={value} setValue={setValue} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}/>
+        <Footer setValue={setValue} setSelectedIndex={setSelectedIndex}/>
       </BrowserRouter>
-
-
     </ThemeProvider>
   );
 }
