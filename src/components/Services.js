@@ -75,11 +75,13 @@ export default function Services(props) {
         direction="row"
         justify={matchesSM ? "center" : "flex-end"}
         className={classes.serviceContainer}
+        style={{marginTop: matchesSM ? "1em" : "5em"}}
       >
         <Grid
           item
           style={{
-            textAlign: matchesSM ? "center" : undefined
+            textAlign: matchesSM ? "center" : undefined,
+            width: matchesSM ? undefined : "35em"
           }}
         >
           <Typography variant="h4">Service 2</Typography>
@@ -113,6 +115,7 @@ export default function Services(props) {
             className={classes.icon}
             alt="service 2 icon"
             src={service2Icon}
+            width="250em"
           />
         </Grid>
       </Grid>
@@ -166,6 +169,7 @@ export default function Services(props) {
             className={classes.icon}
             alt="service 1 icon"
             src={service1Icon}
+            width="250em"
           />
         </Grid>
       </Grid>
@@ -179,11 +183,13 @@ export default function Services(props) {
         direction="row"
         justify={matchesSM ? "center" : "flex-end"}
         className={classes.serviceContainer}
+        style={{marginBottom: "10em"}}
       >
         <Grid
           item
           style={{
-            textAlign: matchesSM ? "center" : undefined
+            textAlign: matchesSM ? "center" : undefined,
+            marginTop: matchesSM ? "1em" : "5em"
           }}
         >
           <Typography variant="h4">Service 3</Typography>
@@ -216,6 +222,7 @@ export default function Services(props) {
             className={classes.icon}
             alt="service 3 icon"
             src={service3Icon}
+            width="250em"
           />
         </Grid>
       </Grid>
