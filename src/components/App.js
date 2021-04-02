@@ -3,6 +3,7 @@ import Header from './ui/Header'
 import Footer from './ui/Footer'
 import Landing from './Landing'
 import Services from './Services'
+import Service1 from './Service1'
 import { ThemeProvider } from '@material-ui/styles'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import theme from './ui/Theme'
@@ -18,7 +19,7 @@ function App() {
         <Switch>
           <Route exact path='/' render={(props) => <Landing {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} />}/>
           <Route exact path='/services' render={(props) => <Services {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} />}/>
-          <Route exact path='/service1' component={()=> <div>placeholder component</div>}/>
+          <Route exact path='/service1' render={(props) => <Service1 {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} />}/>
           <Route exact path='/service2' component={()=> <div>placeholder component</div>}/>
           <Route exact path='/service3' component={()=> <div>placeholder component</div>}/>
           <Route exact path='/herbz' component={()=> <div>herbz</div>}/>
