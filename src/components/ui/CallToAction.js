@@ -1,11 +1,45 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Typography, Button, useMediaQuery, Grid} from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import ButtonArrow from "./ButtonArrow";
-import { Link } from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
+import _ from 'lodash'
 
-import background from "../../assets/1336599.jpg";
+import background0 from "../../assets/1336599.jpg";
+import background1 from "../../assets/1336599.jpg";
+import background2 from "../../assets/1336599.jpg";
+import background3 from "../../assets/1336599.jpg";
+import services from "../../assets/1336599.jpg";
+import service1 from "../../assets/1336599.jpg";
+import service2 from "../../assets/1336599.jpg";
+import service3 from "../../assets/1336599.jpg";
+import landing from "../../assets/tempmobile.jpg";
+import herbz from "../../assets/berrybasket.png";
+import about from "../../assets/1336599.jpg";
+import contact from "../../assets/1336599.jpg";
+import consultation from "../../assets/1336599.jpg";
 import mobileBackground from "../../assets/tempmobile.jpg";
+
+
+//could do other or random ways for CTA background:
+//use math.rand with set numbers of background images / names
+//or use hooks (useState) for dynamic bgs
+
+//const location = window.location.pathname.slice(1) !== '' || !backgroundEnum.hasOwnProperty(window.location.pathname.slice(1)) ? window.location.pathname.slice(1) : landing
+//const location = useLocation()
+
+const doTheBackground = () => {
+  //const backgroundEnum = Object.freeze({service1, service2, service3, landing})
+  const bgs = [service1, mobileBackground, herbz, landing]
+  console.log(bgs)
+  console.log('service 1 ? ' + bgs[0])
+  const rando = _.random(0, bgs.length - 1)
+  console.log('rando = ' + rando)
+
+  const currentBg = bgs[rando]
+  console.log(currentBg)
+  return `url(${currentBg})`
+}
 
 const useStyles = makeStyles(theme => ({
   learnButton: {
@@ -16,9 +50,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down("sm")]: {
       marginBottom: "2em"
     }
-  },
-  background: {
-    backgroundImage: `url(${background})`,
+  },                                        
+  background: {                            
+    //backgroundImage: `url(${background0})`
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundAttachment: "fixed",
@@ -55,6 +89,7 @@ export default function CallToAction(props) {
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
 
+
   return (
     <Grid
       container
@@ -62,6 +97,10 @@ export default function CallToAction(props) {
       justify={matchesSM ? "center" : "space-between"}
       className={classes.background}
       direction={matchesSM ? "column" : "row"}
+      style={{
+        //backgroundImage: `url(${background0})`
+        backgroundImage: `${doTheBackground()}` //this works, but should be done differently 
+      }}
     >
       <Grid
         item

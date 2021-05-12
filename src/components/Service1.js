@@ -379,7 +379,7 @@ export default function Service1(props) {
         </Grid>
       </Grid>
       <Grid item>
-        <CallToAction setValue={props.setValue} />
+        <CallToAction setValue={props.setValue} setBgImgNum={props.setBgImgNum}/>
       </Grid>
     </Grid>
   );

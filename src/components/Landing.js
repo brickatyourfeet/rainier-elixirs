@@ -472,7 +472,7 @@ export default function Landing(props) {
       </Grid>
       <Grid item>
         {/*-----CTA-----*/}
-        <CallToAction setValue={props.setValue} />
+        <CallToAction setValue={props.setValue} setBgImgNum={props.setBgImgNum} bgImg0000={props.bgImg0000}/>
       </Grid>
     </Grid>
   );
