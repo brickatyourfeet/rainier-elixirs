@@ -5,10 +5,10 @@ import ButtonArrow from "./ButtonArrow";
 import { Link, useLocation} from "react-router-dom";
 import _ from 'lodash'
 
-import background0 from "../../assets/1336599.jpg";
-import background1 from "../../assets/1336599.jpg";
-import background2 from "../../assets/1336599.jpg";
-import background3 from "../../assets/1336599.jpg";
+import background0 from "../../assets/ctabg0.jpg";
+import background1 from "../../assets/ctabg1.jpg";
+import background2 from "../../assets/ctabg2.jpg";
+import background3 from "../../assets/ctabg3.jpg";
 import services from "../../assets/1336599.jpg";
 import service1 from "../../assets/1336599.jpg";
 import service2 from "../../assets/1336599.jpg";
@@ -30,7 +30,7 @@ import mobileBackground from "../../assets/tempmobile.jpg";
 
 const doTheBackground = () => {
   //const backgroundEnum = Object.freeze({service1, service2, service3, landing})
-  const bgs = [service1, mobileBackground, herbz, landing]
+  const bgs = [background0, background1, background2, background3]
   console.log(bgs)
   console.log('service 1 ? ' + bgs[0])
   const rando = _.random(0, bgs.length - 1)

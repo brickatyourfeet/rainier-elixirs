@@ -1,10 +1,13 @@
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {Grid, Typography, useMediaQuery} from "@material-ui/core";
+import JuicerFeed from 'react-juicer-feed';
 
-import herbs from "../assets/herbs.svg"
+import herbs from "../assets/herbs.svg";
 
 import CallToAction from "./ui/CallToAction";
+
+const rainierFeed = 'rainierelixirs';
 
 const useStyles = makeStyles(theme => ({
   rowContainer: {
@@ -26,7 +29,10 @@ export default function Herbz(props) {
 
   //background color on this container won't account for top padding - move this style later
   return (
-    <Grid container direction="column" style={{backgroundColor: "#607580"}}>
+    <Grid container direction="column" style={{backgroundColor: "#607580", marginTop: "-2rem"}}>
+      {/* <JuicerFeed crossorigin feedId={rainierFeed} style={{}} data-filter="Instagram, Tumblr"/> */}
+      <JuicerFeed feedId={rainierFeed} />
+    {/* <iframe target="_parent" src="https://rainierelixirs.tumblr.com/" width="100%" height="1000" frameborder="0"></iframe> */}
       <Grid
         item
         className={classes.rowContainer}

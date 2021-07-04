@@ -9,10 +9,10 @@ import CallToAction from "./ui/CallToAction";
 import service1Icon from "../assets/tincture.svg";
 import service2Icon from "../assets/tea-bag.svg";
 import service3Icon from "../assets/green-tea.svg";
-import leaf1Icon from "../assets/leaf1.svg"
-import pongTemp from "../assets/pongtemp.svg"
-import herbzBackground from "../assets/repeatingBackground.svg";
-import infoBackground from "../assets/infoBackground.svg";
+import leaf1Icon from "../assets/leaf1.svg";
+import pongTemp from "../assets/pongtemp.svg";
+import herbzBackground from "../assets/hexlight.svg";
+import infoBackground from "../assets/hexblur1.svg";
 
 const useStyles = makeStyles(theme => ({
   animation: {   //can use lottie or a gif, or just an image/svg
@@ -415,16 +415,16 @@ export default function Landing(props) {
                 style={{ marginBottom: matchesXS ? "10em" : 0 }}
                 direction="column"
               >
-                <Typography variant="h2" style={{ color: "white" }}>
+                <Typography variant="h2" style={{ color: "black" }}>
                   About
                 </Typography>
-                <Typography variant="subtitle2">About descript 1</Typography>
+                <Typography style={{ color: "black", borderColor: "black" }} variant="subtitle2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, consequatur. Quis ratione provident quos, recusandae assumenda vel ipsum reprehenderit error rerum eum officiis. Incidunt explicabo impedit dolorum alias iusto? Culpa.</Typography>
                 <Grid item>
                   <Button
                     component={Link}
                     to="/about"
                     variant="outlined"
-                    style={{ color: "white", borderColor: "white" }}
+                    style={{ color: "black", borderColor: "black" }}
                     className={classes.learnButton}
                     onClick={() => props.setValue(3)}
                   >

@@ -4,7 +4,9 @@ import { makeStyles, useTheme } from '@material-ui/styles'
 import { Link } from 'react-router-dom'
 import MenuIcon from '@material-ui/icons/Menu'
 
-import logo from '../../assets/logo.svg'
+import logo from '../../assets/rainierelixirswidewhite2.svg'
+
+
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -33,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   logo: {  //these will need to change as logos do
     height: "9em",
     marginTop: "0.3em",
-    marginBottom: "-1em",
+    //marginBottom: "-1em",
     [theme.breakpoints.down('md')] : {
       height: '6em'
     },
@@ -161,7 +163,8 @@ export default function Header(props){
     {name: "Services", link: '/services', activeIndex: 1, ariaOwns: anchorEl ? 'simple-menu' : undefined, ariaPopup: anchorEl ? true : undefined, mouseOver: event => handleClick(event)},
     {name: "Herbz", link: '/herbz', activeIndex: 2},
     {name: "About", link: '/about', activeIndex: 3},
-    {name: "Contact", link: '/contact', activeIndex: 4}
+    {name: "Contact", link: '/contact', activeIndex: 4},
+    {name: "Consultation", link: '/consultation', activeIndex: 5}, //adding this here gets rid of index error for 5
   ]
 
   

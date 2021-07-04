@@ -7,7 +7,7 @@ const customRed = "#8E2B0E"
 const customGrey = "b3b3cc"
 
 export default createMuiTheme({
-  palette: {
+  palette: { //add more color options in the palette
     common: {
       teal: customTeal,
       red: customRed
@@ -86,7 +86,7 @@ export default createMuiTheme({
       fontWeight: "bold"
     }
   },
-  overrides: {
+  overrides: { //for overriding all of a default mui component
     MuiInputLabel: {
       root: {
         color: customTeal,
@@ -99,7 +99,7 @@ export default createMuiTheme({
         fontWeight: 300
       },
       underline: {
-        "&:before": {
+        "&:before": { //before clicking on the input
           borderBottom: `2px solid ${customTeal}`
         },
         "&:hover:not($disabled):not($focused):not($error):before": {

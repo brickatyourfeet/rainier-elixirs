@@ -6,7 +6,10 @@ import Services from './Services'
 import Service1 from './Service1'
 import Service2 from './Service2'
 import Service3 from './Service3';
+import About from './About'
+import Contact from './Contact'
 import Herbz from './Herbz'
+import Consultation from './Consultation'
 import { ThemeProvider } from '@material-ui/styles'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import theme from './ui/Theme'
@@ -28,12 +31,11 @@ function App() {
           <Route exact path='/services' render={(props) => <Services {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} setBgImgNum={setBgImgNum}/>}/>
           <Route exact path='/service1' render={(props) => <Service1 {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} setBgImgNum={setBgImgNum}/>}/>
           <Route exact path='/service2' render={(props)=> <Service2 {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} setBgImgNum={setBgImgNum}/>}/>
-          <Route exact path='/service3' component={()=> <div>placeholder component</div>}/>
-          {/*<Route exact path='/service3' render={(props)=> <Service3 {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} setBgImgNum={setBgImgNum}/>}/>*/}
+          <Route exact path='/service3' render={(props)=> <Service3 {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} setBgImgNum={setBgImgNum}/>}/>
           <Route exact path='/herbz' render={(props)=> <Herbz {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} setBgImgNum={setBgImgNum}/>}/>
-          <Route exact path='/about' component={()=> <div>about</div>}/>
-          <Route exact path='/contact' component={()=> <div>contact</div>}/>
-          <Route exact path='/consultation' component={()=> <div>consult</div>}/>
+          <Route exact path='/about' render={(props)=> <About {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} setBgImgNum={setBgImgNum}/>}/>
+          <Route exact path='/contact' render={(props)=> <Contact {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} setBgImgNum={setBgImgNum}/>}/>
+          <Route exact path='/consultation' render={(props)=> <Consultation {...props} setValue={setValue} setSelectedIndex={setSelectedIndex} setBgImgNum={setBgImgNum}/>}/>
         </Switch>
         <Footer setValue={setValue} setSelectedIndex={setSelectedIndex}/>
       </BrowserRouter>
